@@ -1,0 +1,240 @@
+/* Main Product Title */
+.product-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #0d1b2a;
+}
+
+/* Price */
+.product-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #dc3545;
+    margin-bottom: 10px;
+}
+
+/* Star Rating */
+.product-star img {
+    width: 16px;
+    height: 16px;
+}
+.product-star p {
+    font-size: 14px;
+    margin-left: 6px;
+    margin-bottom: 0;
+}
+
+/* Product Description */
+.product-description {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Size Heading */
+.product-size h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0d1b2a;
+    margin-bottom: 10px;
+}
+
+/* Size Buttons */
+.size-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.size-btn:hover {
+    background-color: #f8f9fa;
+    border-color: #adb5bd;
+}
+
+/* Add to Cart Button */
+.btn-danger {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 0;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Product Category and Tag */
+.product-category {
+    font-size: 16px;
+    color: #343a40;
+}
+.product-category span {
+    font-weight: 600;
+    color: #000;
+}
+
+/* Related Product Titles */
+.product-title-link {
+    font-weight: 600;
+    color: #212529;
+    text-decoration: none;
+}
+.product-title-link:hover {
+    color: #dc3545;
+    text-decoration: underline;
+}
+
+/* Related Product Price */
+.product-price {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Responsive Fixes */
+@media (max-width: 576px) {
+    .product-title {
+        font-size: 28px;
+    }
+
+    .product-size h1 {
+        font-size: 22px;
+    }
+
+    .btn-danger {
+        font-size: 14px;
+        padding: 10px 0;
+    }
+}
+
+
+    /* Filter Button Styles */
+    .filter-btn.btn-primary {
+        background-color: #ff4400 !important;
+        border-color: #ff4400 !important;
+    }
+
+    .filter-btn.btn-outline-primary {
+        color: #ff4400 !important;
+        border-color: #ff4400 !important;
+    }
+
+    .filter-btn.btn-outline-primary:hover {
+        background-color: #ff4400 !important;
+        color: white !important;
+    }
+
+    /* Sort by Price Dropdown Button */
+    .dropdown-toggle.btn-outline-primary {
+        color: #ff4400 !important;
+        border-color: #ff4400 !important;
+    }
+
+    .dropdown-toggle.btn-outline-primary:hover,
+    .dropdown-toggle.btn-outline-primary:focus,
+    .dropdown-toggle.show {
+        background-color: #ff4400 !important;
+        color: white !important;
+        border-color: #ff4400 !important;
+    }
+
+    /* Dropdown Items Hover (Optional for better UX) */
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #ff4400 !important;
+        color: white !important;
+    }
+
+
+
+/* Container around cart and badge */
+.nav-login-cart {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Cart icon style */
+.nav-login-cart img {
+    width: 26px;
+    height: auto;
+}
+
+/* Cart badge styling */
+.nav-cart-count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background-color: #dc3545; /* Red */
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 50%;
+    line-height: 1;
+    min-width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(255, 68, 0, 0.4) !important;
+}
+
+.custom-message-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.custom-message {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border-left: 5px solid #888;
+    border-radius: 4px;
+    min-width: 250px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    font-family: sans-serif;
+}
+
+/* Add color per message type */
+.custom-message.success {
+    border-left-color: green;
+    background-color: #e6ffe6;
+}
+
+.custom-message.error {
+    border-left-color: red;
+    background-color: #ffe6e6;
+}
+
+.custom-message.info {
+    border-left-color: blue;
+    background-color: #e6f0ff;
+}
+
+.custom-message.warning {
+    border-left-color: orange;
+    background-color: #fff5e6;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 18px;
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    cursor: pointer;
+}
+

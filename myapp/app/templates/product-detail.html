@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} MZ fashion & design - Product Detail{% endblock %}
+
+{% block content %}
+<header class="site-header section-padding d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-12">
+                <h1>
+                    <span class="d-block text-primary">We provide you</span>
+                    <span class="d-block text-dark">Fashionable Stuffs</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="product-display section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- Product Image -->
+            <div class="col-lg-6 col-12 text-center">
+                <div class="product-img mx-auto shadow" style="width: 100%; max-width: 500px; aspect-ratio: 4/5; overflow: hidden; border-radius: 10px;">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: 100%; object-fit: cover;" class="product-main-img img-fluid">
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-lg-6 col-12 product-right">
+                <h1 class="product-title mt-3">{{ product.name }}</h1>
+
+                <!-- Star Rating -->
+                <div class="product-star d-flex align-items-center mb-2">
+                    <img src="{% static 'images/star-icon.png' %}" style="width:16px; height:16px;" alt="star">
+                    <img src="{% static 'images/star-icon.png' %}" style="width:16px; height:16px;" alt="star">
+                    <img src="{% static 'images/star-icon.png' %}" style="width:16px; height:16px;" alt="star">
+                    <img src="{% static 'images/star-icon.png' %}" style="width:16px; height:16px;" alt="star">
+                    <img src="{% static 'images/star-dull-icon.png' %}" style="width:16px; height:16px;" alt="dull-star">
+                    <p class="mb-0 ms-2">(200+)</p>
+                </div>
+             
+                <div class="product-price fs-4 fw-bold">
+              <strong>
+                  {% if product.is_sale %}
+                    <strike class="text-muted">Rs.{{ product.price }}</strike>
+                    &nbsp; <span class="text-danger">Rs.{{ product.current_price }}</span>
+                  {% else %}
+                  Rs.{{ product.current_price }}
+                  {% endif %}
+               </strong>
+
+              </div>
+                <p class="product-description">{{ product.description }}</p>
+                <!-- Sizes -->
+                <div class="product-size mb-3">
+                    <h1>Select Size</h1>
+                    <div class="d-flex gap-2 flex-wrap mt-2">
+                        <div class="size-btn btn btn-outline-secondary btn-sm">S</div>
+                        <div class="size-btn btn btn-outline-secondary btn-sm">M</div>
+                        <div class="size-btn btn btn-outline-secondary btn-sm">L</div>
+                        <div class="size-btn btn btn-outline-secondary btn-sm">XL</div>
+                    </div>
+                </div>
+
+                <!-- Cart -->
+                <div class="row mb-3">
+                    <div class="col-lg-6 col-12 mt-2 mt-lg-0">
+                        <a href="{% url 'cart' %}?product_id={{ product.id }}" class="btn btn-danger w-100">Add to Cart</a>
+
+                    </div>
+                </div>
+                
+
+                <p class="product-category"><span>Category :</span> {{ product.category.name }}</p>
+                <p class="product-category"><span>Tag :</span> New Collection, Latest</p>
+            </div>
+        </div>
+
+        <!-- Description Tab -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <ul class="nav nav-tabs" id="productTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="description-tab" data-bs-toggle="tab" href="#" role="tab">Description</a>
+                    </li>
+                </ul>
+                <div class="tab-content border p-3" id="productTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel">
+                        <p class="product-description">MZ Fashion & Design is your one-stop online destination for stylish, high-quality fashion for men, women, and kids. We offer a wide range of trendy and traditional wear designed to suit every occasion. With easy navigation, secure checkout, and fast delivery, shopping with us is as seamless as it is stylish. Discover fashion that fits your lifestyle — effortlessly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Products -->
+<section class="related-product section-padding border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mb-5">You might also like</h3>
+            </div>
+
+            {% for item in related_products %}
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="product-thumb shadow-sm p-2 rounded">
+                    <a href="{% url 'product-detail' item.id %}">
+                        <div style="width: 100%; aspect-ratio: 4/5; overflow: hidden; border-radius: 10px;">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" style="width: 100%; height: 100%; object-fit: cover;" class="img-fluid">
+                        </div>
+                    </a>
+                    <div class="product-info d-flex mt-3">
+                        <div>
+                            <h5 class="product-title mb-1">
+                                <a href="{% url 'product-detail' item.id %}" class="product-title-link">{{ item.name }}</a>
+                            </h5>
+                            <p class="product-p text-muted small">{{ item.description|truncatechars:40 }}</p>
+                        </div>
+                        <small class="product-price text-muted ms-auto mt-auto">${{ item.price }}</small>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-muted">No similar products found.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

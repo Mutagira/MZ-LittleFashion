@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}MZ fashion & design - Address {% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="pt-3 pb-2">
+        <h2 class="fw-bold">Welcome {{ request.user.first_name|default:request.user.username }}</h2>
+    </div>
+
+      <div class="row mt-4">
+        <div class="col-sm-2 border-end">
+            <ul class="list-unstyled">
+                <li class="d-grid mb-2"><a href="{% url 'profile' %}" class="btn btn-outline-primary">Profile</a></li>
+                <li class="d-grid mb-2"><a href="{% url 'address' %}" class="btn btn-primary">Address</a></li>
+                <li class="d-grid"><a href="{% url 'user_orders' %}" class="btn btn-outline-primary">Orders</a></li>
+            </ul>
+        </div>
+
+        <!-- Address Card -->
+        <div class="col-sm-10">
+            <div class="row">
+                {% if address %}
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Shipping Address</h5>
+                            <p class="mb-1"><strong>Name:</strong> {{ address.full_name }}</p>
+                            <p class="mb-1"><strong>Phone:</strong> {{ address.profile.phone }}</p>
+                            <p class="mb-1"><strong>Country:</strong> {{ address.profile.country }}</p>
+                            <p class="mb-1"><strong>City:</strong> {{ address.profile.city }}</p>
+                            <p class="mb-1"><strong>Postal Code:</strong> {{ address.profile.postal_code }}</p>
+                            <p class="mb-3"><strong>Address Line:</strong> {{ address.address_line }}</p>
+                            <a href="{% url 'update-address' %}" class="btn btn-success">Update</a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                    <p>No shipping address found.</p>
+                <div class="text-start mb-3 ms-2">
+                   <a href="{% url 'add-address' %}" class="btn btn-sm btn-primary px-4 py-2" style="font-weight: 500;">
+                   Add Address
+                   </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

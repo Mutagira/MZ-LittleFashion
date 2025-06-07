@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+ 
+
+{% block title %} MZ fashion & design- login {% endblock %}
+
+{% block content %}
+<main>
+    <section class="sign-in-form section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto col-12">
+                    <h1 class="hero-title text-center mb-5">Sign In</h1>
+
+                    <div class="social-login d-flex flex-column w-50 m-auto">
+                        {% load socialaccount %}
+                        <a href="{% provider_login_url 'google' %}" class="btn custom-btn social-btn mb-4">
+                            <i class="bi bi-google me-3"></i>
+                            Continue with Google
+                        </a>
+
+                        <a href="{% provider_login_url 'facebook' %}?next=/" class="btn custom-btn social-btn">
+                            <i class="bi bi-facebook me-3"></i>
+                            Continue with Facebook
+                        </a>
+                    </div>
+
+                    <div class="div-separator w-50 m-auto my-5"><span>or</span></div>
+
+                    <div class="row">
+                        <div class="col-lg-8 col-11 mx-auto">
+                            <form role="form" method="POST" action="{% url 'login' %}">
+                                {% csrf_token %}
+
+                                <div class="form-floating mb-4 p-0">
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+                                    <label for="username">Username</label>
+                                </div>
+
+                                <div class="form-floating p-0">
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                    <label for="password">Password</label>
+                                </div>
+
+                                <button type="submit" class="btn custom-btn form-control mt-4 mb-3">
+                                    Login
+                                </button>
+
+                                <p class="text-center">Don’t have an account? <a href="/sign-up">Create One</a></p>
+                            </form>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

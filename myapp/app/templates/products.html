@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} MZ Fashion & Design - Products {% endblock %}
+
+{% block content %}
+
+<header class="site-header section-padding d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-12">
+                <h1>
+                    <span class="d-block text-primary">Choose your</span>
+                    <span class="d-block text-dark">favorite stuffs</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="products section-padding">
+    <div class="container">
+        <!-- Filter & Sort -->
+        <div class="row mb-5" >
+            <div class="col-12 d-flex justify-content-between align-items-center mb-5">
+                <div class="filter-buttons">
+                    <button class="btn btn-primary m-1 filter-btn" data-filter="all">All</button>
+                    <button class="btn btn-outline-primary m-1 filter-btn" data-filter="womens">Womens</button>
+                    <button class="btn btn-outline-primary m-1 filter-btn" data-filter="mens">Mens</button>
+                    <button class="btn btn-outline-primary m-1 filter-btn" data-filter="kids">Kids</button>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="priceDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort by Price
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="priceDropdown">
+                        <li><a class="dropdown-item price-option"  data-order="default" href="#">Default</a></li>
+                        <li><a class="dropdown-item price-option" data-order="asc" href="#">Low to High</a></li>
+                        <li><a class="dropdown-item price-option" data-order="desc" href="#">High to Low</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="row" id="products-list">
+            {% for product in products %}
+            <div class="col-md-3 col-6 mb-5 text-center product-item"
+                data-category="{{ product.category.name|lower }}"
+                data-price="{{ product.price }}"
+                {% if product.is_sale %} data-sale-price= "{{ product.sale_price }}" {% endif %}>
+                
+                <a href="{% url 'product-detail' product.id %}" class="d-block position-relative">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid mb-3" style="height: 400px; object-fit: cover; border-radius: 10px;">
+                    
+                    {% if product.is_sale %}
+                     <span class="badge bg-dark text-white position-absolute " style=" top: 0.75rem; right: 1.75rem; font-size: 0.9rem;
+                      font-weight: 700;" >Sale</span>
+                    {% endif %}
+                </a>
+
+                <p class="mb-1 fw-semibold">{{ product.name }}</p>
+                
+               <strong>
+    {% if product.is_sale %}
+        <strike class="text-muted">Rs.{{ product.price }}</strike>
+        &nbsp; <span class="text-danger">Rs.{{ product.current_price }}</span>
+    {% else %}
+        Rs.{{ product.current_price }}
+    {% endif %}
+</strong>
+
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-muted text-center">No products found.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %} MZ fashion & design - Checkout{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4">Checkout</h2>
+
+    <div class="row">
+        <!-- Shipping Info -->
+        <div class="col-md-6 mb-4">
+            <h4>Shipping Address</h4>
+            {% if shipping_address %}
+                <p><strong>Name:</strong> {{ shipping_address.full_name }}</p>
+                <p><strong>Address:</strong> {{ shipping_address.address_line }}</p>
+                <p><strong>City:</strong> {{ shipping_address.profile.city }}</p>
+                <p><strong>Country:</strong> {{ shipping_address.profile.country }}</p>
+                <p><strong>Phone:</strong> {{ shipping_address.profile.phone }}</p>
+            {% else %}
+                <p class="text-danger">No shipping address found. <a href="{% url 'add-address' %}">Add Address</a></p>
+            {% endif %}
+        </div>
+
+        <!-- Order Summary -->
+        <div class="col-md-6">
+            <h4>Order Summary</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>Rs. {{ item.total_price }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="2"><strong>Cart Total</strong></td>
+                        <td><strong>Rs. {{ total_cart_price }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>Shipping</strong></td>
+                        <td><strong>Rs. {{ shipping_price }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>Total</strong></td>
+                        <td><strong>Rs. {{ total_price }}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            {% if shipping_address %}
+            <form method="POST" action="{% url 'place_order' %}">
+                {% csrf_token %}
+                <input type="hidden" name="address" value="{{ shipping_address.id }}">
+
+                <div class="mb-3">
+                    <label for="payment">Select Payment Method</label>
+                    <select class="form-control" name="payment" required>
+                        <option value="COD">Cash on Delivery</option>
+                        <option value="CARD">Card</option>
+                        <option value="JAZZCASH">Jazzcash</option>
+                        <option value="BANK">Bank Transfer</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-lg w-100">Place Order</button>
+            </form>
+            {% else %}
+            <p class="text-danger mt-3">You must <a href="{% url 'add-address' %}">add a shipping address</a> before placing an order.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

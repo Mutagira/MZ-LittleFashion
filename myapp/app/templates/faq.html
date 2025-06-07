@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} MZ fashion & design-faq {% endblock %}
+
+{% block content %}
+<header class="site-header section-padding d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-10 col-12">
+                <h1>
+                    <span class="d-block text-primary">Your favorite questions</span>
+                    <span class="d-block text-dark">and our answers to them</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="faq section-padding">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-8 col-12">
+                <h2>General Info.</h2>
+
+                <div class="accordion" id="accordionGeneral">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralOne" aria-expanded="true" aria-controls="accordionGeneralOne">
+                            What is this Little Fashion?
+                            </button>
+                        </h2>
+
+                        <div id="accordionGeneralOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionGeneral">
+
+                            <div class="accordion-body">
+                                <p class="large-paragraph"><strong>Little Fashion</strong> is a modern e-commerce platform offering trendy clothing and accessories for men, women, and kids. It combines stylish selections with a seamless shopping experience.</p>
+
+                                <p class="large-paragraph">Little Fashion is a modern e-commerce brand curating fashionable clothing for every lifestyle.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralTwo" aria-expanded="false" aria-controls="accordionGeneralTwo">
+                            Can I return or exchange an item?
+                            </button>
+                        </h2>
+
+                        <div id="accordionGeneralTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionGeneral">
+
+                            <div class="accordion-body">
+                                <p class="large-paragraph"><strong>Yes</strong>, you can return or exchange items within our specified return policy. Please refer to our returns page for detailed instructions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralThree" aria-expanded="false" aria-controls="accordionGeneralThree">
+                            How do I support your website?
+                            </button>
+                        </h2>
+
+                        <div id="accordionGeneralThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionGeneral">
+
+                            <div class="accordion-body">
+                                <p class="large-paragraph">You can support our website by shopping your favorite products, sharing it with friends and family, and following us on social media for updates and promotions. Your feedback and reviews also help us grow and improve!.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h2 class="mt-5">About <span>our products</span></h2>
+
+                <div class="accordion" id="accordionProduct">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionProductOne" aria-expanded="true" aria-controls="accordionProductOne">
+                            Is shopping on your site secure?
+                            </button>
+                        </h2>
+
+                        <div id="accordionProductOne" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionProduct">
+
+                            <div class="accordion-body">
+                                <p class="large-paragraph"><strong>Yes</strong>, shopping on our site is completely secure. We use SSL encryption to protect your personal and payment information during checkout.</p>
+
+                                <p class="large-paragraph">Your privacy and security are our top priorities, ensuring a safe and seamless shopping experience.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionProductTwo" aria-expanded="false" aria-controls="accordionProductTwo">
+                            Do I need to create an account to shop?
+                            </button>
+                        </h2>
+
+                        <div id="accordionProductTwo" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionProduct">
+
+                            <div class="accordion-body">
+                                <p class="large-paragraph"><strong>Yes</strong>, you need to create an account to shop on our website. However, creating an account lets you track your orders and enjoy exclusive benefits.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

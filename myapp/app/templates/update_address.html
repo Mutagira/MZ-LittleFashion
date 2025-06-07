@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}MZ fashion & design - Update Address {% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h2>{{ title }}</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success" type="submit">Save</button>
+  </form>
+
+  <hr>
+  <h4>Profile Info</h4>
+  <p>Phone: {{ request.user.customer.phone }}</p>
+  <p>City: {{ request.user.customer.city }}</p>
+  <p>Country: {{ request.user.customer.country }}</p>
+  <p>Postal Code: {{ request.user.customer.postal_code }}</p>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}MZ fashion & design -Profile {% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    
+    <div class="pt-3 pb-2">
+        <h2 class="fw-bold">My Profile</h2>
+    </div>
+
+
+    <div class="row mt-4">
+        <div class="col-sm-2 border-end">
+            <ul class="list-unstyled">
+                <li class="d-grid mb-2"><a href="{% url 'profile' %}" class="btn btn-primary">Profile</a></li>
+                <li class="d-grid mb-2"><a href="{% url 'address' %}" class="btn btn-outline-primary">Address</a></li>
+                <li class="d-grid"><a href="{% url 'user_orders' %}" class="btn btn-outline-primary">Orders</a></li>
+                
+            </ul>
+        </div>
+
+        <div class="col-sm-8 offset-sm-1">
+            <h3>Welcome <span class="text-capitalize">{{ request.user }}</span></h3>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary mt-2">Save Changes</button>
+            </form>
+
+            {% if customer.profile_picture %}
+                <h4 class="mt-4">Profile Picture:</h4>
+                <img src="{{ customer.profile_picture.url }}" style="width: 150px; height: 150px; object-fit: cover;" class="rounded">
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}MZ fashion & design-My Orders{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+
+    <div class="pt-3 pb-2">
+        <h2 class="fw-bold">My Profile</h2>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-sm-2 border-end">
+            <ul class="list-unstyled">
+                <li class="d-grid mb-2"><a href="{% url 'profile' %}" class="btn btn-outline-primary">Profile</a></li>
+                <li class="d-grid mb-2"><a href="{% url 'address' %}" class="btn btn-outline-primary">Address</a></li>
+                <li class="d-grid"><a href="{% url 'user_orders' %}" class="btn btn-primary">Orders</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-8 offset-sm-1">
+            <h3>Welcome <span class="text-capitalize">{{ request.user }}</span></h3>
+            <h5 class="mt-4">Your Orders</h5>
+
+            {% for order in orders %}
+                <div class="border p-3 my-3 rounded">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img src="{{ order.product.image.url }}" alt="{{ order.product.name }}" style="width: 100px;">
+                        </div>
+                        <div class="col-sm-4">
+                            <strong>Product:</strong> {{ order.product.name }}<br>
+                            <strong>Quantity:</strong> {{ order.quantity }}<br>
+                            <strong>Price:</strong> {{ order.product.price }}<br>
+                        </div>
+                        <div class="col-sm-4">
+                            <strong>Status:</strong> {{ order.status }}<br>
+                            <div class="progress mt-2" style="height: 20px;">
+                                {% if order.status == "Delivered" %}
+                                    <div class="progress-bar bg-success" style="width: 100%;">Delivered</div>
+                                {% elif order.status == "Shipped" %}
+                                    <div class="progress-bar bg-warning" style="width: 75%;">Shipped</div>
+                                {% elif order.status == "Packed" %}
+                                    <div class="progress-bar bg-info" style="width: 50%;">Packed</div>
+                                {% else %}
+                                    <div class="progress-bar bg-secondary" style="width: 25%;">Processing</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-sm-2 text-end">
+                            {% if order.can_be_cancelled %}
+                                <form method="POST" action="{% url 'cancel_order' order.id %}">
+                                    {% csrf_token %}
+                                    <button class="btn btn-danger btn-sm mt-2">Cancel</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="mt-4">You have not placed any orders yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
